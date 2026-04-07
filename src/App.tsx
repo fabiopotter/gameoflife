@@ -22,6 +22,7 @@ export default function App() {
   const [date, setDate] = useState(today);
   const [activities, setActivities] = useState<DailyActivities>(emptyActivities);
   const [editingDate, setEditingDate] = useState<string | null>(null);
+  const [saveMessage, setSaveMessage] = useState<string | null>(null);
 
   const dayXp = useMemo(() => calculateDailyXp(activities), [activities]);
   const totalXp = useMemo(() => calculateTotalXp(records), [records]);
@@ -39,6 +40,7 @@ export default function App() {
 
   const onDateChange = (newDate: string) => {
     setDate(newDate);
+    setSaveMessage(null);
     const found = records.find((record) => record.date === newDate);
     if (found) {
       setActivities(found.activities);
@@ -51,6 +53,7 @@ export default function App() {
   };
 
   const onToggle = (key: keyof DailyActivities) => {
+    setSaveMessage(null);
     setActivities((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
@@ -73,6 +76,7 @@ export default function App() {
     };
 
     upsertRecord(record);
+    setSaveMessage(editingDate === date ? 'Registro atualizado com sucesso.' : 'Registro salvo com sucesso.');
     setEditingDate(date);
   };
 
@@ -82,6 +86,7 @@ export default function App() {
     setDate(record.date);
     setActivities(record.activities);
     setEditingDate(record.date);
+    setSaveMessage(null);
   };
 
   const onDelete = (targetDate: string) => {
@@ -94,25 +99,41 @@ export default function App() {
     if (editingDate === targetDate) {
       setEditingDate(null);
       setActivities(emptyActivities);
+      setSaveMessage(null);
     }
   };
 
   return (
     <main className="container">
-      <h1>Rotina XP</h1>
-      <p className="subtitle">Registro rápido para manter consistência diária.</p>
-      <DailyForm
-        date={date}
-        activities={activities}
-        dayXp={dayXp}
-        isEditing={editingDate === date}
-        onDateChange={onDateChange}
-        onToggle={onToggle}
-        onSave={onSave}
-      />
-      <WeeklySummaryCard summary={weeklySummary} />
-      <ProgressCard levelInfo={levelInfo} />
-      <HistoryList records={records} onEdit={onEdit} onDelete={onDelete} />
+      <header className="app-header">
+        <div>
+          <p className="eyebrow">Painel diário</p>
+          <h1>Rotina XP</h1>
+          <p className="subtitle">Registro rápido para acompanhar consistência, progresso e semana atual.</p>
+        </div>
+        <div className="header-stat">
+          <span>XP total</span>
+          <strong>{totalXp}</strong>
+        </div>
+      </header>
+
+      <section className="dashboard-grid" aria-label="Resumo da rotina">
+        <DailyForm
+          date={date}
+          activities={activities}
+          dayXp={dayXp}
+          isEditing={editingDate === date}
+          saveMessage={saveMessage}
+          onDateChange={onDateChange}
+          onToggle={onToggle}
+          onSave={onSave}
+        />
+        <div className="side-panel">
+          <ProgressCard levelInfo={levelInfo} />
+          <WeeklySummaryCard summary={weeklySummary} />
+        </div>
+      </section>
+      <HistoryList records={records} onEdit={onEdit} onDelete={onDelete} editingDate={editingDate} />
     </main>
   );
 }

@@ -26,9 +26,14 @@ export function HistoryList({ records, onEdit, onDelete, editingDate }: Props) {
             <li key={record.date} className={editingDate === record.date ? 'editing-row' : ''}>
               <div className="history-content">
                 {editingDate === record.date && <span className="badge badge-editing">Em edição</span>}
-                <strong>{record.date}</strong>
-                <p>{formatActivities(record)}</p>
-                <small className={record.xp < 0 ? 'danger-text' : ''}>XP final: {record.xp}</small>
+                <div className="history-main">
+                  <div>
+                    <span className="history-label">Data</span>
+                    <strong className="history-date">{record.date}</strong>
+                  </div>
+                </div>
+                <p className="history-activities">{formatActivities(record)}</p>
+                <small className={`history-xp ${record.xp < 0 ? 'danger-text' : ''}`}>XP final: <strong>{record.xp}</strong></small>
               </div>
               <div className="actions">
                 <button onClick={() => onEdit(record.date)} className="secondary">Editar</button>

@@ -20,7 +20,7 @@ export function ProgressCard({ levelInfo }: Props) {
           <span>XP total</span>
           <strong>{levelInfo.totalXp}</strong>
         </div>
-        <div className="metric-card">
+        <div className="metric-card next-level-card">
           <span>Para o próximo nível</span>
           <strong>{levelInfo.xpToNextLevel}</strong>
         </div>

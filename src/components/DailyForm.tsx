@@ -62,7 +62,7 @@ export function DailyForm({ date, activities, dayXp, isEditing, saveMessage, onD
         <strong>{dayXp}</strong>
         {hasPenalty && <small>Penalidade aplicada: sem atividade física.</small>}
       </p>
-      <button onClick={onSave}>{isEditing ? 'Atualizar registro' : 'Salvar registro'}</button>
+      <button className="primary-action" onClick={onSave}>{isEditing ? 'Atualizar registro' : 'Salvar registro'}</button>
     </section>
   );
 }

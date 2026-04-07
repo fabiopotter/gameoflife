@@ -80,9 +80,11 @@ h3 { font-size: 0.95rem; }
 .header-stat {
   min-width: 148px;
   border-radius: 18px;
-  padding: 1rem;
+  padding: 1.1rem 1.2rem;
   display: grid;
   gap: 0.25rem;
+  border-color: #bfdbfe;
+  background: linear-gradient(145deg, #ffffff, #eff6ff);
 }
 
 .header-stat span,
@@ -96,7 +98,12 @@ h3 { font-size: 0.95rem; }
   letter-spacing: 0.08em;
 }
 
-.header-stat strong { font-size: 2rem; line-height: 1; }
+.header-stat strong {
+  color: #1d4ed8;
+  font-size: clamp(2.15rem, 4vw, 3rem);
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
 
 .card {
   border-radius: 22px;
@@ -171,20 +178,38 @@ button:focus-visible,
   display: flex;
   gap: 0.6rem;
   align-items: center;
-  min-height: 48px;
+  min-height: 56px;
   border: 1px solid #e3e8f0;
   border-radius: 14px;
-  padding: 0.75rem;
+  padding: 0.85rem 0.9rem;
   background: #f8fafc;
   color: #334155;
   cursor: pointer;
+  transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, transform 0.12s ease;
+}
+
+.checkbox-row:hover {
+  border-color: #bfdbfe;
+  background: #f1f7ff;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
 }
 
 .checkbox-row.checked {
-  border-color: #93c5fd;
-  background: #eff6ff;
-  color: #1d4ed8;
+  border-color: #2563eb;
+  background: linear-gradient(145deg, #eff6ff, #dbeafe);
+  color: #1e40af;
   font-weight: 800;
+  box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.22);
+}
+
+.checkbox-row.checked:hover {
+  background: #dbeafe;
+}
+
+.checkbox-row input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: #2563eb;
 }
 
 button {
@@ -195,26 +220,57 @@ button {
   padding: 0.75rem 1rem;
   cursor: pointer;
   font-weight: 800;
+  transition: background-color 0.16s ease, box-shadow 0.16s ease, transform 0.12s ease;
+}
+
+button:hover {
+  background: #0f172a;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.18);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.14);
 }
 
 button.secondary { background: #eef2f7; color: #1f2937; }
 button.danger { background: #fef2f2; color: #b42318; }
 
+button.secondary:hover { background: #e2e8f0; box-shadow: none; }
+button.danger:hover { background: #fee4e2; box-shadow: none; }
+
+.primary-action {
+  width: 100%;
+  min-height: 54px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 16px 34px rgba(37, 99, 235, 0.24);
+}
+
+.primary-action:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  box-shadow: 0 18px 38px rgba(37, 99, 235, 0.32);
+}
+
 .xp-preview {
   display: grid;
-  gap: 0.25rem;
-  border: 1px solid #bfdbfe;
-  border-left: 5px solid #2563eb;
-  border-radius: 16px;
-  padding: 1rem;
-  margin: 0 0 1rem;
-  background: #eff6ff;
+  gap: 0.35rem;
+  border: 1px solid #93c5fd;
+  border-left: 7px solid #1d4ed8;
+  border-radius: 18px;
+  padding: 1.15rem 1.2rem;
+  margin: 0 0 1.1rem;
+  background: linear-gradient(145deg, #eff6ff, #dbeafe);
+  box-shadow: 0 16px 34px rgba(37, 99, 235, 0.12);
 }
 
 .xp-preview strong {
-  color: #1d4ed8;
-  font-size: clamp(2rem, 5vw, 3rem);
-  line-height: 0.95;
+  color: #1e3a8a;
+  font-size: clamp(3rem, 8vw, 4.6rem);
+  letter-spacing: -0.08em;
+  line-height: 0.88;
 }
 
 .xp-preview.penalty {
@@ -236,7 +292,7 @@ button.danger { background: #fef2f2; color: #b42318; }
 .metric-card,
 .week-xp {
   border-radius: 16px;
-  padding: 0.9rem;
+  padding: 1rem;
   display: grid;
   gap: 0.35rem;
 }
@@ -248,16 +304,29 @@ button.danger { background: #fef2f2; color: #b42318; }
 }
 
 .metric-card.accent span { color: #cbd5e1; }
-.metric-card strong, .week-xp strong { font-size: 1.7rem; line-height: 1; }
+.metric-card strong, .week-xp strong { font-size: 1.9rem; line-height: 1; }
+
+.next-level-card {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.next-level-card strong {
+  color: #1d4ed8;
+}
 
 .progress-copy {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.65rem;
   color: #475467;
   font-size: 0.85rem;
   font-weight: 700;
+}
+
+.progress-copy span {
+  color: #1d4ed8;
 }
 
 .history-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
@@ -265,10 +334,17 @@ button.danger { background: #fef2f2; color: #b42318; }
   display: flex;
   justify-content: space-between;
   gap: 0.9rem;
-  border: 1px solid #e3e8f0;
-  border-radius: 16px;
-  padding: 0.9rem;
-  background: #fbfcfe;
+  border: 1px solid #dbe4f0;
+  border-radius: 18px;
+  padding: 1rem;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, transform 0.12s ease;
+}
+
+.history-list li:hover {
+  border-color: #bfdbfe;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
 }
 
 .history-list li.editing-row {
@@ -276,8 +352,38 @@ button.danger { background: #fef2f2; color: #b42318; }
   background: #fff7ed;
 }
 
-.history-content { display: grid; gap: 0.35rem; }
-.history-content p { color: #475467; }
+.history-content { display: grid; gap: 0.55rem; min-width: 0; }
+.history-main { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+.history-label {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: #667085;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.history-date {
+  color: #111827;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+}
+.history-activities {
+  color: #334155;
+  font-weight: 650;
+  line-height: 1.45;
+}
+.history-xp {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 0.35rem 0.6rem;
+  background: #f1f5f9;
+  color: #334155;
+  font-weight: 750;
+}
+.history-xp strong {
+  font-size: 1rem;
+}
 .actions { display: flex; gap: 0.45rem; align-items: center; }
 .stats { margin: 1rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.55rem; }
 .stats li {
@@ -291,15 +397,16 @@ button.danger { background: #fef2f2; color: #b42318; }
 .muted { color: #667085; line-height: 1.5; }
 
 .progress {
-  height: 12px;
-  background: #e5e7eb;
+  height: 18px;
+  background: #dbe4f0;
   border-radius: 999px;
   overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.12);
 }
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  background: linear-gradient(90deg, #1d4ed8, #2563eb, #60a5fa);
   transition: width 0.2s ease;
 }
 
